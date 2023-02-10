@@ -10,7 +10,7 @@
     <body>
         <form action="busqueda_resultados.php" method="get">
             <fieldset>
-                <legend><h3>Buscador clientes BABEL</h3></legend>
+                <legend><h3>Buscador clientes BBDD </h3></legend>
                 <label>Buscar empresa: <input type="text" name="buscar"></label>
                 <input type="submit" name="query" value="iniciar">
             </fieldset>
