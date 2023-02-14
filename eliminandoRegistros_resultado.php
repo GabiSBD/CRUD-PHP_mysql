@@ -14,41 +14,41 @@
     
             require("datos_conexion.php");
     
-            //conexion BBDD por procedimientos
-            $connect = mysqli_connect($db_host, $db_user, $db_password/*, $db_nombre*/);
+            
+            $connect = new mysqli($db_host, $db_user, $db_password);
     
-            if(mysqli_connect_errno()){
+            if($connect -> connect_errno){
                 echo " Error al conectar con la BBDD";
                 exit();
             }
             
-            mysqli_set_charset($connect, "utf8");
+            $connect -> set_charset("utf8");
     
-            mysqli_select_db($connect, $db_nombre) or die ("no se encuentra la BBDD");
+            $connect -> select_db($db_nombre) or die ("no se encuentra la BBDD");
 
-            $codigo = mysqli_real_escape_string($connect, $codigo);
+            $codigo = $connect -> real_escape_string($codigo);
         
-            $verificacion = mysqli_query($connect, "Select * From clientes Where CÓDIGOCLIENTE = '$codigo';");
+            $verificacion = $connect -> query("Select * From clientes Where CÓDIGOCLIENTE = '$codigo';");
     
-            if(!mysqli_fetch_row($verificacion)){
+            if(!($verificacion -> fetch_row())){
             echo "<h1>El registro insertado es erroneo o ya existe en la base de datos, revise su codigoCliente</h1>";
                 
             }else{
     
                     $delete = "DELETE FROM CLIENTES WHERE CÓDIGOCLIENTE = '$codigo';";
-                    $query = mysqli_query($connect, $delete);
+                    $query = $connect -> query($delete);
     
                 
-                $comprobacion = mysqli_query($connect, "Select * From clientes Where CÓDIGOCLIENTE = '$codigo';");
+                $comprobacion = $connect -> query("Select * From clientes Where CÓDIGOCLIENTE = '$codigo';");
                 
-                if(mysqli_fetch_row($comprobacion)==null){
+                if($comprobacion -> fetch_row()==null){
                     echo "<h1>El registro $codigo ha sido correctamente eliminado</h1>";  
                     
                 } else {
                 echo "<h1>el registro no se pudo borrar de la BBDD, compruebe los datos, o contacte con servicio tecnico, Disculpe las molestias</h1>";}
             }
     
-            mysqli_close($connect); 
+           $connect -> close(); 
         ?>
     </body>
 </html>

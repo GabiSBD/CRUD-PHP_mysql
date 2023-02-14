@@ -14,21 +14,24 @@
         $busqueda = $_GET["buscar"];
 
         require("datos_conexion.php");
-        $connect = mysqli_connect($db_host, $db_user, $db_password);
+        $connect = new mysqli($db_host, $db_user, $db_password);
 
-        if(mysqli_connect_errno()){
-            echo "Eroor al conectar con el servidor";
+        if($connect -> connect_errno){
+            echo "Error al conectar con el servidor";
             exit();
         }
 
-        mysqli_set_charset($connect, "utf8");
-        mysqli_select_db($connect, $db_nombre) or die("no se encontro la BBDD");
+        $connect -> set_charset("utf8");
+        $connect -> select_db($db_nombre) or die("no se encontro la BBDD");
 
-        $busqueda = mysqli_real_escape_string($connect, $busqueda);
+        
+        $busqueda = $connect -> real_escape_string($busqueda);
 
         $query = "SELECT * FROM clientes WHERE empresa LIKE '%$busqueda%'";
 
-        $resultSet = mysqli_query($connect, $query);
+       
+       $resultSet = $connect ->query($query);
+
 
         echo "<table> 
                     <tr>
@@ -40,7 +43,7 @@
                         <th>RESPONSABLE</th>
                         <th>HISTORIAL</th>
                     </tr>";
-        while($row = mysqli_fetch_row($resultSet)){
+        while($row = $resultSet -> fetch_row()){
             echo "<tr>";
             foreach($row as $data){
                 echo "<td>$data</td>";

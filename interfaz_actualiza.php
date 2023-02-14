@@ -8,25 +8,25 @@
     <link rel="stylesheet" href="css/estilo_insertandoRegistros.css" type="text/css">
 </head>
 <body>
-    <?php
+     <?php
         $codigo = $_GET["codigo"];
 
         require("datos_conexion.php");
 
-        $connect = mysqli_connect($db_host, $db_user, $db_password);
+        $connect = new mysqli($db_host, $db_user, $db_password);
         
-        if(mysqli_connect_errno()){
+        if($connect -> connect_errno){
             echo " Error al conectar con la BBDD";
             exit();
         }
-        $codigo = mysqli_real_escape_string($connect, $codigo);
+        $codigo = $connect -> real_escape_string($codigo);
 
-        mysqli_set_charset($connect, "utf8");
-        mysqli_select_db($connect, $db_nombre) or die("<h3>no se encuentra la BBDD referenciada</h3>");
+        $connect -> set_charset("utf8");
+        $connect -> select_db($db_nombre) or die("<h3>no se encuentra la BBDD referenciada</h3>");
 
-        $resultSet = mysqli_query($connect, "SELECT * FROM CLIENTES WHERE CÓDIGOCLIENTE = '$codigo';");
+        $resultSet = $connect -> query("SELECT * FROM CLIENTES WHERE CÓDIGOCLIENTE = '$codigo';");
 
-        while($row=mysqli_fetch_array($resultSet)){
+        while($row = $resultSet -> fetch_assoc()){
             echo "<form action='resultado_actualiza.php' method='get'>
                     <input type='text' name='codigo' value='" . $row["CÓDIGOCLIENTE"] . "' readonly><br>
                     <input type='text' name='empresa' value='" . $row["EMPRESA"] . "'><br>
@@ -40,6 +40,7 @@
 
         }
 
+        $connect -> close();
     
     ?>
 </body>

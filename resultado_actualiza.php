@@ -19,37 +19,38 @@
 
         require("datos_conexion.php");
 
-        $connect = mysqli_connect($db_host, $db_user, $db_password);
+        $connect = new mysqli($db_host, $db_user, $db_password);
         
-        if(mysqli_connect_errno()){
+        if($connect -> connect_errno){
             echo " Error al conectar con la BBDD";
             exit();
         }
 
-        $codigo= mysqli_real_escape_string($connect, $codigo);
-        $nombre=mysqli_real_escape_string($connect, $nombre);
-        $direccion=mysqli_real_escape_string($connect, $direccion);
-        $ciudad=mysqli_real_escape_string($connect, $ciudad);
-        $telf=mysqli_real_escape_string($connect, $telf);
-        $responsable=mysqli_real_escape_string($connect, $responsable);
-        $historial=mysqli_real_escape_string($connect, $historial);
+        $codigo= $connect -> real_escape_string($codigo);
+        $nombre= $connect ->real_escape_string($nombre);
+        $direccion= $connect -> real_escape_string($direccion);
+        $ciudad= $connect -> real_escape_string($ciudad);
+        $telf= $connect -> real_escape_string($telf);
+        $responsable= $connect -> real_escape_string($responsable);
+        $historial= $connect -> real_escape_string($historial);
 
-        mysqli_set_charset($connect, "utf8");
-        mysqli_select_db($connect, $db_nombre) or die("<h3>no se encuentra la BBDD referenciada</h3>");
+        $connect ->set_charset("utf8");
+        $connect -> select_db($db_nombre) or die("<h3>no se encuentra la BBDD referenciada</h3>");
 
-    $query = mysqli_query($connect, "UPDATE CLIENTES SET 
-                                            EMPRESA='$nombre',
-                                            DIRECCIÓN='$direccion',
-                                            POBLACIÓN='$ciudad',
-                                            TELÉFONO='$telf',
-                                            RESPONSABLE='$responsable',
-                                            HISTORIAL='$historial'
-                                        WHERE CÓDIGOCLIENTE='$codigo';");
+    $query = $connect -> query( "UPDATE CLIENTES SET 
+                                    EMPRESA='$nombre',
+                                    DIRECCIÓN='$direccion',
+                                    POBLACIÓN='$ciudad',
+                                    TELÉFONO='$telf',
+                                    RESPONSABLE='$responsable',
+                                    HISTORIAL='$historial'
+                                WHERE CÓDIGOCLIENTE='$codigo';");
         if(!$query){
         echo "<h3>UPPS! Error al actualizar el registro</h3>";
     } else {
         echo "<h3>Registro actualizado correctamente</h3";
     }
+    $connect -> close();
     
     ?>
 </body>
