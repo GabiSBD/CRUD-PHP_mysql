@@ -9,7 +9,7 @@
     </head>
     <body>
         <?php
-            $codigo=$_GET["codigo"];
+            $codigo=$_POST["codigo"];
             
     
             require("datos_conexion.php");

@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="css/estilo_insertandoRegistros.css" type="text/css">
     </head>
     <body>
-        <form action="busqueda_resultados.php" method="get">
+        <form action="busqueda_resultados.php" method="post">
             <fieldset>
                 <legend><h3>Buscador clientes BBDD </h3></legend>
                 <label>Buscar empresa: <input type="text" name="buscar"></label>
@@ -16,7 +16,7 @@
             </fieldset>
         </form>
         
-        <form action="insertandoRegistros_resultado_preparedStatement.php" method="get">
+        <form action="insertandoRegistros_resultado_preparedStatement.php" method="post">
             <fieldset>
                 <legend><h3>Formulario de registro de clientes</h3></legend>
                 <table>
@@ -54,7 +54,7 @@
                 </table>
             </fieldset>
         </form>
-        <form action="eliminandoRegistros_resultado.php" method="get">
+        <form action="eliminandoRegistros_resultado.php" method="post">
             <fieldset>
                 <legend><h3>Formulario de eliminacion  de clientes</h3></legend>
                 <table>
@@ -68,7 +68,7 @@
                 </table>
             </fieldset>
         </form> 
-        <form action="interfaz_actualiza.php" method= "get">
+        <form action="interfaz_actualiza.php" method= "post">
             <fieldset>
                 <legend><h3>Formulario de actualizacion de Clientes</h3></legend>
                 <table>

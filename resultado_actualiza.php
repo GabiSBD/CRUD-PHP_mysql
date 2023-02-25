@@ -9,13 +9,13 @@
 </head>
 <body>
     <?php
-        $codigo=$_GET["codigo"];
-        $nombre=$_GET["empresa"];
-        $direccion=$_GET["direccion"];
-        $ciudad=$_GET["POBLACIÓN"];
-        $telf=$_GET["TELÉFONO"];
-        $responsable=$_GET["RESPONSABLE"];
-        $historial=$_GET["HISTORIAL"];
+        $codigo=$_POST["codigo"];
+        $nombre=$_POST["empresa"];
+        $direccion=$_POST["direccion"];
+        $ciudad=$_POST["POBLACIÓN"];
+        $telf=$_POST["TELÉFONO"];
+        $responsable=$_POST["RESPONSABLE"];
+        $historial=$_POST["HISTORIAL"];
 
         require("datos_conexion.php");
 

@@ -11,7 +11,7 @@
 <body>
     <?php
 
-        $busqueda = $_GET["buscar"];
+        $busqueda = $_POST["buscar"];
 
         require("datos_conexion.php");
         $connect = new mysqli($db_host, $db_user, $db_password);

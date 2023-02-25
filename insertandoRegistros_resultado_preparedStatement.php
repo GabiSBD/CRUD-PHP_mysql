@@ -23,13 +23,13 @@
 
             $connect -> select_db($db_nombre) or die ("no se encuentra la BBDD");
 
-            $codigo=$_GET["codigo"];
-            $nombre=$_GET["nombre"];
-            $direccion=$_GET["direccion"];
-            $ciudad=$_GET["ciudad"];
-            $telf=$_GET["telf"];
-            $responsable=$_GET["responsable"];
-            $historial=$_GET["historial"];
+            $codigo=$_POST["codigo"];
+            $nombre=$_POST["nombre"];
+            $direccion=$_POST["direccion"];
+            $ciudad=$_POST["ciudad"];
+            $telf=$_POST["telf"];
+            $responsable=$_POST["responsable"];
+            $historial=$_POST["historial"];
 
             $verificacion = $connect -> query("Select * From clientes Where CÓDIGOCLIENTE = '$codigo';");
 
