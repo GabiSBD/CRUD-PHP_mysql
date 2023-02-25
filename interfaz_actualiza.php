@@ -27,7 +27,7 @@
         $resultSet = $connect -> query("SELECT * FROM CLIENTES WHERE CÓDIGOCLIENTE = '$codigo';");
 
         while($row = $resultSet -> fetch_assoc()){
-            echo "<form action='resultado_actualiza.php' method='get'>
+            echo "<form action='resultado_actualiza.php' method='post'>
                     <input type='text' name='codigo' value='" . $row["CÓDIGOCLIENTE"] . "' readonly><br>
                     <input type='text' name='empresa' value='" . $row["EMPRESA"] . "'><br>
                     <input type='text' name='direccion' value='" .$row["DIRECCIÓN"]. "'><br>
