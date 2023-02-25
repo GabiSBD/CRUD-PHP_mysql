@@ -27,7 +27,11 @@
         
         $busqueda = $connect -> real_escape_string($busqueda);
 
-        $query = "SELECT * FROM clientes WHERE empresa LIKE '%$busqueda%'";
+        if($busqueda=="*") $query = "SELECT * FROM clientes";
+
+        else if($busqueda==""||$busqueda==" ") exit();
+
+        else $query = "SELECT * FROM clientes WHERE empresa LIKE '%$busqueda%'";
 
        
        $resultSet = $connect ->query($query);
